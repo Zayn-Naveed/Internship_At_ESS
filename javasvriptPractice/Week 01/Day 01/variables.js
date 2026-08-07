@@ -42,8 +42,10 @@ and we are now writing multi line comments
 
 // console.log("This is my first javascript code");
 
-// var,let,const
+// *****************var,let,const***********************
 
+let name = "M. Zain";  // the value which we have to change according to our needs 
+const bornYear = 2004; // the value that can not be changed
 
 
 
@@ -53,8 +55,8 @@ if(true){
     firstName = "Muhammad Zain"; // var can be reassign inside the block  
     let lastName = " Naveed"; 
     lastName = " Naveed Ahmed"; // let can be reassign value inside the block  
-    const bornYear = " 2004"; // 
-    bornYear = " 2005"; // const cannot be reassign inside the block 
+    const bornYear = 2004; // 
+    bornYear = 2005; // const cannot be reassign inside the block 
 
     console.log(firstName);
     console.log(lastName);
@@ -79,19 +81,7 @@ const country = "Pakistan";
 
 // while let and const also hoisted but it cannot be initialized just like var keyword so it throws refrence error because of TDZ (Temporal Dead Zone)
 
-/*      ********HOISTING*********                           
 
-Hoisting is JavaScript's default behavior of moving declarations to the top of their current scope before code execution. This means you can use variables and functions before they are declared in your code.
-it has following behaviors
-
-Declaration Type        Hoisted?    Initialized Value       Throws Error if Used Early?
-var                     Yes         undefined               No (returns undefined)
-let                     Yes         Uninitialized           Yes (ReferenceError)
-const                   Yes         Uninitialized           Yes (ReferenceError)
-Function Declaration    Yes         Full function body      No (executes normally)
-Function Expression     No         Follows variable rules   Yes (depends on var, let, or const)
-
-*/ 
 
 // Data Types
 console.log(typeof name);      // string
