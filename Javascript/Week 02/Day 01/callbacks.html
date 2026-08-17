@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callbacks</title>
+</head>
+<body>
+    <h1>
+        Callbacks
+    </h1>
+    <h2>A Callback is a function passed as an argument to another function, which is executed after the main function has finished.</h2>
+</body>
+    <script>
+
+    
+    function greet2(greet3){
+        console.log("greet2 function");
+        greet3();
+    }
+    greet2(function greet3(){
+        console.log("greet3 function");
+        
+    })
+
+    function greet4(greet6){
+        console.log("greet4 function");
+        greet6();
+    }
+
+    greet4(greet5);
+
+    function greet5(){
+        console.log("greet5 function");
+        
+    }
+
+   function greet(name, callback){
+    console.log("Hello " + name);
+    callback();
+   }
+
+   function sayBye(){
+    console.log("GoodBye!");
+    
+   }
+
+   greet("Zain", sayBye);
+
+
+    </script>
+</html>

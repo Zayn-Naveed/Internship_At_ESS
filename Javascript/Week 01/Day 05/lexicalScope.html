@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexical Scoping</title>
+</head>
+<body>
+    <h1>Hello, Lexical Scoping</h1>
+
+</body>
+
+    <!-- Lexical scope (also known as static scope) means that the accessibility of variables is determined by their physical location within the source code structure. In simpler terms, a function's scope is locked in when the code is written (compile time), not when the function is executed (runtime).
+    This structure means that inner functions have access to variables declared in their outer (parent) scopes, but the parent scopes cannot look downward to access variables inside child functions -->
+
+    <h1>Both lexical scope and lexical environment are valid, distinct terms in computer science (especially in JavaScript). They are closely related but have different meanings. [1, 2, 3, 4] 
+Here is the breakdown of the differences:
+## Lexical Scope (The Rules)
+Lexical scope is a conceptual rule set determined at compile time. It defines where variables and blocks are accessible based on where they are written in the source code. [5, 6, 7] 
+
+* Static: It never changes during runtime.
+* Structure: It is defined by nesting functions or blocks.
+* Purpose: It dictates which variables a function has permission to access. [8, 9, 10, 11, 12] 
+
+## Lexical Environment (The Mechanics)
+A lexical environment is the actual internal data structure created by the engine during runtime. It holds the real-time identifiers (variable/function names) and their values. [13, 14, 15, 16, 17] 
+
+* Dynamic: It is created and destroyed as code executes.
+* Components: It consists of an Environment Record (stores local variables) and a Reference to the outer environment (allows scope chaining).
+* Purpose: It is the engine's physical mechanism to implement lexical scope. [18, 19, 20, 21, 22] 
+
+## Summary Analogy
+Think of Lexical Scope as the blueprint of a building that shows which rooms connect to each other. Think of Lexical Environment as the actual physical rooms built at runtime, containing the real furniture (variables) inside them.
+Would you like to see a code example demonstrating how these two concepts interact during execution?
+</h1>
+<hr>
+<h1>
+    Here is a practical code example to show how these two concepts work together in JavaScript.
+
+const globalVar = "Global";
+function outerFunction() {
+  const outerVar = "Outer";
+
+  function innerFunction() {
+    const innerVar = "Inner";
+    console.log(innerVar, outerVar, globalVar);
+  }
+
+  innerFunction();
+}
+
+outerFunction();
+
+## 1. How Lexical Scope Sees This (Compile Time)
+Before running a single line of code, the JavaScript engine looks at the physical structure of your file. It establishes the permission blueprint:
+
+* innerFunction scope sits inside outerFunction scope.
+* outerFunction scope sits inside the Global scope.
+* The Rule: innerFunction has the permanent permission to look upward into outerFunction and the Global scope to find variables.
+
+------------------------------
+## 2. How Lexical Environments See This (Runtime)
+When you execute outerFunction(), and it subsequently calls innerFunction(), the engine physically creates three separate Lexical Environment data structures in memory.
+Behind the scenes, they look structurally like this at the moment innerFunction executes:
+## Global Lexical Environment
+
+* Environment Record: { globalVar: "Global", outerFunction: f }
+* Outer Environment Reference: null (Nothing is outside global)
+
+## OuterFunction Lexical Environment
+
+* Environment Record: { outerVar: "Outer", innerFunction: f }
+* Outer Environment Reference: Points to the Global Lexical Environment
+
+## InnerFunction Lexical Environment
+
+* Environment Record: { innerVar: "Inner" }
+* Outer Environment Reference: Points to the OuterFunction Lexical Environment
+
+------------------------------
+## The Execution Link
+When console.log(innerVar, outerVar, globalVar) runs:
+
+   1. The engine checks the InnerFunction Lexical Environment Record for innerVar. Found.
+   2. It checks for outerVar. Not found. It follows the Outer Environment Reference up to the outerFunction Lexical Environment. Found.
+   3. It checks for globalVar. Not found. It follows the reference up to outerFunction, then up to the Global Lexical Environment. Found.
+
+Would you like to explore how closures leverage these lexical environments to remember variables even after a function finishes executing?
+
+
+</h1>
+
+    <script>
+        function outer(){
+        let userName = "Zain Naveed";
+            function inner(){
+                console.log("inner", userName);
+            }
+            inner();
+        }
+        outer();
+
+        function outer(){
+        let userName = "Zain Naveed";
+            function inner(){
+                console.log("inner", userName);
+            }
+            function innerTwo(){
+                console.log("innerTwo", userName);
+            }
+            inner();
+            innerTwo();
+        }
+        outer();
+
+
+    </script>
+</html>
+
+

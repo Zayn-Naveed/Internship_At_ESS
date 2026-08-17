@@ -79,13 +79,9 @@ let city = "Lahore";
 console.log(country);
 const country = "Pakistan";
 
-// while let and const also hoisted but it cannot be initialized just like var keyword so it throws refrence error because of TDZ (Temporal Dead Zone)
+// while let and const also hoisted but it throws refrence error because of TDZ (Temporal Dead Zone)
+
+// temporal Dead Zone
+//  the Temporal Dead Zone (TDZ) is the specific behavior where a variable is completely inaccessible and throws a ReferenceError, if you try to use it before its official declaration line is executed.This behavior exclusively impacts variables declared with let and const, as well as class declarations.
 
 
-
-// Data Types
-console.log(typeof name);      // string
-console.log(typeof age);       // number
-console.log(typeof true);      // boolean
-console.log(typeof null);      // object
-console.log(typeof undefined); // undefined
